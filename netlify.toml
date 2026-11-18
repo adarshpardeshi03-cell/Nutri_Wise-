@@ -1,0 +1,4 @@
+[build]
+  base = "nutriwise_react_dashboard"
+  command = "npm install --include=dev && npm run build"
+  publish = "dist"

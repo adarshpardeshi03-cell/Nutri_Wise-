@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NutriWise — Wellness Intelligence</title>
+<style>
+:root{--bg:#0b1220;--panel:#121d2e;--panel2:#172438;--line:rgba(177,198,221,.12);--text:#edf4f7;--muted:#8fa2b5;--mint:#56d6b0;--blue:#70a7ff;--violet:#a78bfa;--orange:#ffb86b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 75% -10%,#1a3450 0,transparent 38%),radial-gradient(ellipse at 0% 65%,#122b32 0,transparent 32%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+button{font:inherit}.layout{max-width:1500px;margin:auto;display:grid;grid-template-columns:245px minmax(0,1fr);min-height:100vh}
+.sidebar{border-right:1px solid var(--line);padding:28px 18px 20px;background:rgba(9,16,29,.72);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;backdrop-filter:blur(18px)}
+.brand{display:flex;gap:11px;align-items:center;padding:0 8px}.logo{width:39px;height:39px;border-radius:13px;background:linear-gradient(135deg,#55d8b3,#438bd4);display:grid;place-items:center;color:#08221f;font-size:22px;font-weight:900;box-shadow:0 8px 25px #42cba344}.brand b{font-size:19px;letter-spacing:-.7px}.brand small{display:block;color:#7f96a9;font-size:8px;letter-spacing:1.8px;margin-top:4px}
+.nav-label{font-size:9px;letter-spacing:1.8px;color:#62778b;font-weight:800;margin:43px 12px 12px}.nav{display:flex;align-items:center;gap:12px;text-decoration:none;color:#91a5b8;padding:12px 13px;border-radius:11px;margin:3px 0;font-size:12px;transition:.2s}.nav .ico{width:20px;text-align:center;font-size:16px}.nav.active,.nav:hover{background:linear-gradient(100deg,rgba(86,214,176,.16),rgba(86,214,176,.04));color:#9af0d7;border:1px solid rgba(86,214,176,.13)}.side-bottom{margin-top:auto}.upgrade{padding:16px;border:1px solid rgba(86,214,176,.17);border-radius:15px;background:linear-gradient(145deg,rgba(49,125,111,.2),rgba(25,47,69,.35))}.upgrade .spark{font-size:20px}.upgrade b{display:block;font-size:12px;margin:9px 0 5px}.upgrade p{font-size:10px;line-height:1.6;color:#8da4b4;margin:0}.user{display:flex;align-items:center;gap:10px;border-top:1px solid var(--line);padding:17px 4px 0;margin-top:19px}.avatar{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#f0b78b,#a67de4);display:grid;place-items:center;color:#1a2030;font-weight:800}.user b{font-size:11px}.user small{display:block;color:#71879a;font-size:9px;margin-top:3px}
+main{padding:30px 38px 25px;min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:25px}.eyebrow{color:#77a392;font-size:9px;letter-spacing:1.8px;font-weight:800}.topbar h1{font-size:27px;letter-spacing:-1px;margin:7px 0 5px}.topbar p{color:var(--muted);font-size:12px;margin:0}.top-right{display:flex;align-items:center;gap:11px}.date{border:1px solid var(--line);background:#121e2d;color:#a6b9c9;border-radius:10px;padding:10px 13px;font-size:10px}.bell{width:36px;height:36px;border-radius:11px;border:1px solid var(--line);background:#121e2d;color:#b4c6d5}
+.hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;min-height:205px;border:1px solid rgba(126,216,194,.2);border-radius:19px;padding:28px 34px;background:linear-gradient(112deg,#164d4a 0%,#1b4852 45%,#253c62 100%);box-shadow:0 18px 50px #0003}.hero:before{content:"";position:absolute;width:330px;height:330px;border-radius:50%;right:80px;top:-180px;background:#75e6c4;opacity:.1;filter:blur(2px)}.hero-copy{position:relative;z-index:1;max-width:610px}.hero .eyebrow{color:#9ee8d4}.hero h2{font-size:25px;letter-spacing:-.7px;margin:10px 0 8px}.hero p{font-size:11px;color:#c1ddd9;line-height:1.7;max-width:490px;margin:0 0 18px}.hero-btn{border:0;border-radius:9px;background:#a4f0d9;color:#10372f;font-size:10px;font-weight:800;padding:11px 15px;cursor:pointer}.hero-visual{position:relative;width:190px;height:150px;display:grid;place-items:center;flex-shrink:0}.orb{position:absolute;width:138px;height:138px;border-radius:50%;background:linear-gradient(145deg,#a7f0d7,#70b8bd);box-shadow:0 0 60px #7fe5cb55;opacity:.9}.food-bowl{position:relative;z-index:1;font-size:76px;filter:drop-shadow(0 15px 12px #061e28aa);transform:rotate(-8deg)}
+.section-title{display:flex;justify-content:space-between;align-items:end;margin:25px 0 12px}.section-title h3{font-size:14px;margin:0;letter-spacing:-.2px}.section-title span{font-size:10px;color:#71879a}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.metric,.panel{background:linear-gradient(145deg,rgba(22,35,53,.96),rgba(15,26,42,.96));border:1px solid var(--line);border-radius:15px;box-shadow:0 12px 30px #00000014}.metric{padding:16px}.metric-top{display:flex;justify-content:space-between;align-items:center;color:#9aafbf;font-size:10px}.metric-icon{width:29px;height:29px;border-radius:9px;display:grid;place-items:center;background:#1d3b3b;color:var(--mint);font-size:15px}.metric:nth-child(2) .metric-icon{background:#1c3049;color:var(--blue)}.metric:nth-child(3) .metric-icon{background:#30294a;color:var(--violet)}.metric:nth-child(4) .metric-icon{background:#423326;color:var(--orange)}.metric-value{font-size:25px;font-weight:800;letter-spacing:-1px;margin:13px 0 9px}.metric-value small{font-size:10px;color:#8298aa;font-weight:500;letter-spacing:0}.progress{height:5px;border-radius:10px;background:#25364a;overflow:hidden}.progress i{height:100%;display:block;width:0;background:linear-gradient(90deg,#4fcda8,#86e5c7);border-radius:10px;transition:width .25s}.metric-note{font-size:9px;color:#72889a;margin-top:9px}.water-actions{display:flex;gap:6px}.water-actions button{border:1px solid #2c465d;border-radius:7px;background:#1b3045;color:#9fc7e2;padding:5px 9px;font-size:9px;cursor:pointer}.content{display:grid;grid-template-columns:1.05fr .95fr;gap:14px;margin-top:14px}.panel{padding:19px}.panel-head{display:flex;justify-content:space-between;align-items:center}.panel h3{font-size:14px;margin:0}.tag{font-size:9px;color:#8fdcc4;background:#193c3b;border:1px solid #28544e;border-radius:20px;padding:6px 9px}.muted{font-size:10px;color:#8196a8;margin:7px 0 15px}.habit-row{display:flex;align-items:center;gap:11px;padding:11px 0;border-top:1px solid var(--line)}.habit-emoji{width:33px;height:33px;border-radius:10px;background:#1b3040;display:grid;place-items:center;font-size:16px}.habit-text{flex:1}.habit-text b{font-size:10px;display:block}.habit-text small{display:block;color:#758b9d;font-size:9px;margin-top:3px}.habit-row input{accent-color:#55d6b0;width:17px;height:17px;cursor:pointer}.habit-row:has(input:checked) .habit-text b{color:#76c9ae;text-decoration:line-through}
+.food-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.food-choice{border:1px solid var(--line);border-radius:11px;background:#142337;padding:12px;text-align:left;color:var(--text);cursor:pointer;transition:.18s}.food-choice:hover,.food-choice.selected{border-color:#55c6a6;background:#183a3a;transform:translateY(-1px)}.food-choice span{display:block;font-size:22px;margin-bottom:7px}.food-choice b{display:block;font-size:10px}.food-choice small{font-size:9px;color:#8095a7;display:block;margin-top:4px}.advice{display:flex;gap:10px;padding:12px;border-radius:10px;background:rgba(76,180,147,.1);border:1px solid rgba(86,214,176,.12);margin-top:12px;color:#a8c5c0;font-size:10px;line-height:1.6}.advice strong{color:#8ce3c7}
+.lower{display:grid;grid-template-columns:1.5fr 1fr;gap:14px;margin-top:14px}.meal-list{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}.meal{background:#17283b;border:1px solid var(--line);border-radius:11px;padding:12px}.meal .emoji{font-size:23px}.meal b{display:block;font-size:10px;margin:8px 0 4px}.meal small{color:#7f95a7;font-size:9px;line-height:1.4}.quote{background:linear-gradient(145deg,#222b4a,#172b40);border-color:#343a5c;position:relative;overflow:hidden}.quote .qmark{font-size:38px;color:#8e8cf4;line-height:1}.quote h3{font-size:16px;line-height:1.5;max-width:300px;margin:5px 0 8px}.quote p{font-size:10px;color:#9aa9c2}.quote .decor{position:absolute;right:16px;bottom:5px;font-size:42px;opacity:.25}
+footer{color:#60778b;font-size:9px;padding:19px 2px 0;display:flex;justify-content:space-between}
+@media(max-width:1050px){.layout{grid-template-columns:205px 1fr}.sidebar{padding:24px 13px}main{padding:25px 22px}.metrics{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.layout{display:block}.sidebar{height:auto;position:relative;padding:15px 17px;border-right:0;border-bottom:1px solid var(--line)}.nav-label,.side-bottom{display:none}.sidebar nav{display:flex;overflow:auto;margin-top:14px}.nav{white-space:nowrap;padding:9px 11px}.brand b{font-size:17px}main{padding:20px 14px}.topbar h1{font-size:23px}.date{display:none}.hero{padding:22px;min-height:175px}.hero h2{font-size:21px}.hero-visual{width:95px}.orb{width:90px;height:90px}.food-bowl{font-size:52px}.metrics{gap:9px}.metric{padding:13px}.metric-value{font-size:22px}.content,.lower{grid-template-columns:1fr}.meal-list{grid-template-columns:1fr}.meal{display:flex;align-items:center;gap:12px}.meal b{margin:0 0 4px}.meal .emoji{font-size:25px}footer{display:block;line-height:1.8}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">✳</div><div><b>nutriwise</b><small>WELLNESS INTELLIGENCE</small></div></div>
+  <div class="nav-label">MENU</div>
+  <nav>
+    <a class="nav active" href="#overview"><span class="ico">▦</span> Overview</a>
+    <a class="nav" href="#habits"><span class="ico">◉</span> Daily habits</a>
+    <a class="nav" href="#advisor"><span class="ico">✦</span> Food advisor</a>
+    <a class="nav" href="#meals"><span class="ico">♧</span> Meal ideas</a>
+  </nav>
+  <div class="side-bottom">
+    <div class="upgrade"><div class="spark">✧</div><b>Your health, your pace.</b><p>Build small routines, make mindful choices and celebrate steady progress.</p></div>
+    <div class="user"><div class="avatar">A</div><div><b>My wellness space</b><small>Personal dashboard</small></div></div>
+  </div>
+</aside>
+<main id="overview">
+<header class="topbar"><div><div class="eyebrow">TUESDAY · YOUR WELLNESS SPACE</div><h1>Welcome back, Srushti <span>✦</span></h1><p>A little progress each day adds up to big results.</p></div><div class="top-right"><div class="date" id="date">Today</div><button class="bell" aria-label="Notifications">♧</button></div></header>
+<section class="hero"><div class="hero-copy"><div class="eyebrow">YOUR DAILY CHECK-IN</div><h2>Make wellness your everyday habit.</h2><p>Good health is built through the little choices you make every day. Track your routine, explore better food choices and keep moving forward.</p><button class="hero-btn" onclick="document.getElementById('habits').scrollIntoView({behavior:'smooth'})">Review today's habits&nbsp; →</button></div><div class="hero-visual"><div class="orb"></div><div class="food-bowl">🥗</div></div></section>
+<div class="section-title"><h3>Your daily overview</h3><span>Live updates from your check-in</span></div>
+<section class="metrics">
+<div class="metric"><div class="metric-top">Wellness score <span class="metric-icon">✧</span></div><div class="metric-value" id="score">0<small> / 100</small></div><div class="progress"><i id="scorebar"></i></div><div class="metric-note" id="scorehint">Complete habits to build your score</div></div>
+<div class="metric"><div class="metric-top">Water intake <span class="metric-icon">♧</span></div><div class="metric-value"><span id="water">0</span><small> / 8 glasses</small></div><div class="water-actions"><button id="minus">− Remove</button><button id="plus">+ Add glass</button></div><div class="metric-note">Stay hydrated through your day</div></div>
+<div class="metric"><div class="metric-top">Habits completed <span class="metric-icon">✓</span></div><div class="metric-value"><span id="completed">0</span><small> / 5 tasks</small></div><div class="progress"><i id="habitbar"></i></div><div class="metric-note">Consistency is your superpower</div></div>
+<div class="metric"><div class="metric-top">Today's focus <span class="metric-icon">✦</span></div><div class="metric-value" style="font-size:19px">Feel good</div><div class="metric-note">Eat well · Move more · Rest</div><div class="progress"><i style="width:72%;background:linear-gradient(90deg,#a78bfa,#70a7ff)"></i></div></div>
+</section>
+<section class="content">
+<div class="panel" id="habits"><div class="panel-head"><h3>Daily habits</h3><span class="tag">TODAY'S ROUTINE</span></div><p class="muted">Small actions. Meaningful progress. Tick them off as you go.</p>
+<div class="habit-row"><div class="habit-emoji">💧</div><div class="habit-text"><b>Drink enough water</b><small>Keep your body hydrated</small></div><input type="checkbox" data-habit="0" aria-label="Drink enough water"></div>
+<div class="habit-row"><div class="habit-emoji">🍎</div><div class="habit-text"><b>Eat fruits or vegetables</b><small>Add colour to your plate</small></div><input type="checkbox" data-habit="1" aria-label="Eat fruits or vegetables"></div>
+<div class="habit-row"><div class="habit-emoji">🚶</div><div class="habit-text"><b>Move your body</b><small>Walk, stretch or exercise</small></div><input type="checkbox" data-habit="2" aria-label="Move your body"></div>
+<div class="habit-row"><div class="habit-emoji">🧘</div><div class="habit-text"><b>Take a screen break</b><small>Give your eyes a little rest</small></div><input type="checkbox" data-habit="3" aria-label="Take a screen break"></div>
+<div class="habit-row"><div class="habit-emoji">🌙</div><div class="habit-text"><b>Plan a good bedtime</b><small>Make room for restful sleep</small></div><input type="checkbox" data-habit="4" aria-label="Plan a good bedtime"></div>
+</div>
+<div class="panel" id="advisor"><div class="panel-head"><h3>Smart food advisor</h3><span class="tag">MAKE A CHOICE</span></div><p class="muted">Select what you're thinking of eating for a helpful tip.</p>
+<div class="food-grid">
+<button class="food-choice" data-food="balanced"><span>🥗</span><b>Balanced meal</b><small>Everyday choice</small></button>
+<button class="food-choice" data-food="fast"><span>🍔</span><b>Fast food</b><small>Occasional treat</small></button>
+<button class="food-choice" data-food="sweet"><span>🍰</span><b>Something sweet</b><small>Enjoy mindfully</small></button>
+<button class="food-choice" data-food="snack"><span>🍌</span><b>Quick snack</b><small>Between meals</small></button>
+</div><div class="advice" id="advice">💡 <span><strong>Your friendly reminder</strong><br>Choose a variety of foods, include colourful vegetables and enjoy your meals without guilt.</span></div>
+</div>
+</section>
+<section class="lower">
+<div class="panel" id="meals"><div class="panel-head"><h3>Meal inspiration</h3><span class="tag">SIMPLE & NOURISHING</span></div><p class="muted">A few easy ideas for your day.</p><div class="meal-list">
+<div class="meal"><div class="emoji">🥣</div><div><b>Breakfast</b><small>Poha with peas & peanuts</small></div></div>
+<div class="meal"><div class="emoji">🍛</div><div><b>Lunch</b><small>Dal, roti & seasonal sabzi</small></div></div>
+<div class="meal"><div class="emoji">🍌</div><div><b>Snack</b><small>Banana & a handful of nuts</small></div></div>
+</div></div>
+<div class="panel quote"><div class="qmark">“</div><h3>Take care of your body. It's the place you live in.</h3><p>One mindful choice at a time.</p><div class="decor">✧　❋</div></div>
+</section>
+<footer><span>NutriWise · Personal wellness dashboard</span><span>Build habits that help you feel your best.</span></footer>
+</main></div>
+<script>
+(function(){
+  var habits=[false,false,false,false,false],water=0;
+  function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function put(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  try{var h=JSON.parse(get('nutriwise_pro_habits')||'null');if(Array.isArray(h)&&h.length===5)habits=h.map(Boolean)}catch(e){}
+  var w=parseInt(get('nutriwise_pro_water')||'0',10);if(!isNaN(w))water=Math.max(0,Math.min(20,w));
+  document.getElementById('date').textContent=new Date().toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+  var boxes=Array.prototype.slice.call(document.querySelectorAll('[data-habit]'));
+  function render(){
+    boxes.forEach(function(b,i){b.checked=habits[i]});
+    var n=habits.filter(Boolean).length;
+    document.getElementById('score').innerHTML=(n*20)+'<small> / 100</small>';
+    document.getElementById('scorebar').style.width=(n*20)+'%';
+    document.getElementById('scorehint').textContent=n===5?'Excellent — all habits completed!':(5-n)+' habits left to complete';
+    document.getElementById('completed').innerHTML=n;
+    document.getElementById('habitbar').style.width=(n*20)+'%';
+    document.getElementById('water').textContent=water;
+    put('nutriwise_pro_habits',JSON.stringify(habits));put('nutriwise_pro_water',String(water));
+  }
+  boxes.forEach(function(b,i){b.addEventListener('change',function(){habits[i]=b.checked;render()})});
+  document.getElementById('plus').addEventListener('click',function(){water=Math.min(20,water+1);render()});
+  document.getElementById('minus').addEventListener('click',function(){water=Math.max(0,water-1);render()});
+  var tips={
+    balanced:'🥗 <span><strong>Balanced choice</strong><br>Try combining vegetables, protein, whole grains and healthy fats for a satisfying meal.</span>',
+    fast:'🍔 <span><strong>Enjoy it mindfully</strong><br>Fast food can fit occasionally. Consider a moderate portion and add a side of vegetables.</span>',
+    sweet:'🍰 <span><strong>Enjoy your treat</strong><br>Make room for foods you love. Enjoy your sweet treat slowly and without guilt.</span>',
+    snack:'🍌 <span><strong>A nourishing snack</strong><br>Fruit, yoghurt, roasted chana or a small handful of nuts can be easy options.</span>'
+  };
+  Array.prototype.forEach.call(document.querySelectorAll('[data-food]'),function(btn){btn.addEventListener('click',function(){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-food]'),function(x){x.classList.remove('selected')});
+    btn.classList.add('selected');document.getElementById('advice').innerHTML=tips[btn.getAttribute('data-food')];
+  })});
+  render();
+})();
+</script>
+</body></html>
